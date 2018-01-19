@@ -25,10 +25,10 @@ class SheetFormat(object):
                 'red': 1.0,
                 'green': 1.0,
                 'blue': 1.0
-            }
+            },
             'textFormat': {
                 'bold': True,
-                foregroundColor: {
+                'foregroundColor': {
                     'red': 1.0,
                     'green': 1.0,
                     'blue': 1.0
