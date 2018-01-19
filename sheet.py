@@ -7,7 +7,7 @@ from bl.drive import Drive
 from bl.sheet.format import SheetFormat
 from bl.sheet.value import SheetValue
 from bl.sheet.chart import SheetCharts
-from sheet_exception import NotExistSpreadsheet
+from sheet_exception import NotExistSpreadsheet, RequiredSheet
 
 
 log = logging.getLogger(__name__)
@@ -96,6 +96,8 @@ class Sheet(object):
     def value(self):
         if not self.spreadsheet.get('spreadsheetId'):
             raise NotExistSpreadsheet()
+        if not self.sheet_title:
+            raise RequiredSheet()
         return SheetValue(
             self.spreadsheet_service,
             self.spreadsheet,
@@ -105,6 +107,8 @@ class Sheet(object):
     def format(self):
         if not self.spreadsheet.get('spreadsheetId'):
             raise NotExistSpreadsheet()
+        if not self.sheet_title:
+            raise RequiredSheet()
         return SheetFormat(
             self.spreadsheet_service,
             self.spreadsheet,

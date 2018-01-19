@@ -16,3 +16,12 @@ class WrongRange(Exception):
 
     def __str__(self):
         return self.error_message
+
+
+class RequiredSheet(Exception):
+
+    def __init__(self, message='First step must be add or get sheet'):
+        self.error_message = message
+
+    def __str__(self):
+        return self.error_message
