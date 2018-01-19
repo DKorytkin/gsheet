@@ -13,7 +13,6 @@ class SheetValue(object):
         self.spreadsheet_service = service
         self.spreadsheet = sheet
         self.sheet_title = title
-        self.table = None
         self.sheet_body = {'value_input_option': 'USER_ENTERED', 'data': []}
 
     @staticmethod
@@ -21,10 +20,11 @@ class SheetValue(object):
         t = RowLetterRange(values)
         start = t.get_first_title_column()
         end = t.get_last_title_column()
-        row_range = '{start}{row_number}:{end}{row_number}'.format(
+        row_range = '{start}{start_row}:{end}{end_row}'.format(
             start=start,
             end=end,
-            row_number=row_number
+            start_row=row_number,
+            end_row=row_number
         )
         log.debug('[VALUE] get row range {}'.format(row_range))
         return row_range
@@ -43,7 +43,7 @@ class SheetValue(object):
             {
                 'range': '{}!{}'.format(self.sheet_title, row_range),
                 'majorDimension': 'ROWS',
-                'values': values
+                'values': [values]
             }
         )
         log.debug('[VALUE] add {}'.format(values))
