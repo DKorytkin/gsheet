@@ -1,0 +1,10 @@
+google:
+  secret_file: secret_key.json
+  services:
+  - https://www.googleapis.com/auth/spreadsheets
+  - https://www.googleapis.com/auth/drive
+  doc_template:
+    properties:
+      title: 'Title'
+      locale: 'ru_RU'
+    sheets: []
