@@ -7,7 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 class GoogleAuth(object):
 
     def __init__(self, config):
-        self.config = config
+        self.config = config.get('google')
         self._credentials = ServiceAccountCredentials.from_json_keyfile_name(
             filename=self.config.get('secret_file'),
             scopes=self.config.get('services')

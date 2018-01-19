@@ -8,10 +8,10 @@ CONFIG_TRAFARET = t.Dict({
         'secret_file': t.String(),
         'services': t.List(t.String()),
         'doc_template': t.Dict({
+            'sheets': t.List(t.Null),
             'properties': t.Dict({
                 'title': t.String(),
-                'locale': t.String(),
-                'sheets': t.List(t.Null)
+                'locale': t.String()
             })
         })
     }),

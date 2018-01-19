@@ -42,7 +42,7 @@ class Sheet(object):
     def __init__(self, config=None):
         self.config = config or parse_config()
         auth = GoogleAuth(self.config)
-        self.drive = Drive(auth.drive())
+        self.drive = Drive(auth.drive()).drive
         self.spreadsheet_service = auth.sheet().spreadsheets()
         self.spreadsheet = None
         self.sheet_id = None
