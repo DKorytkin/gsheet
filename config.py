@@ -1,7 +1,12 @@
 
+import os
+
 import trafaret as t
 from trafaret_config import read_and_validate
 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH = os.path.join(BASE_DIR, 'config.yml')
 
 CONFIG_TRAFARET = t.Dict({
     'google': t.Dict({
@@ -19,6 +24,6 @@ CONFIG_TRAFARET = t.Dict({
 
 
 def parse_config():
-    app_config = read_and_validate('config.yml', CONFIG_TRAFARET)
+    app_config = read_and_validate(CONFIG_PATH, CONFIG_TRAFARET)
     config = app_config.copy()
     return config
