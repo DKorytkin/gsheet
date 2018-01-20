@@ -42,7 +42,7 @@ class Sheet(object):
     def __init__(self, config=None):
         self.config = config or parse_config()
         auth = GoogleAuth(self.config)
-        self.drive = Drive(auth.drive()).drive
+        self.drive = Drive(auth.drive())
         self.spreadsheet_service = auth.sheet().spreadsheets()
         self.spreadsheet = None
         self.sheet_id = None
@@ -86,7 +86,7 @@ class Sheet(object):
         if not self.spreadsheet.get('spreadsheetId'):
             raise NotExistSpreadsheet()
         default_role = {'type': 'anyone', 'role': 'reader'}
-        shared = self.drive.permissions().create(
+        shared = self.drive.drive.permissions().create(
             fileId=self.spreadsheet['spreadsheetId'],
             body=default_role if not kwargs else kwargs,
             fields='id'
