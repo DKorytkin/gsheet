@@ -11,7 +11,6 @@ setup(
     description='Simple library writing data to google sheets Edit',
     keywords='google sheet',
     url='https://github.com/DKorytkin/gsheet',
-    packages=find_packages(),
     py_modules=[
         'gsheet', 'gsheet_exceptions', 'helpers',
         'bl.app_auth', 'bl.drive',
