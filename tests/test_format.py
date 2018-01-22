@@ -26,7 +26,7 @@ EX_RESULT = [
         'fields': 'userEnteredFormat'
     }}
 ]
-
+EX_MERGE_RESULT = [{'mergeCells': {'range': RANGE, 'mergeType': 'MERGE_ALL'}}]
 
 FORMAT_PARAMS = [
     (dict(cell_range='A1:A12', b_color='#fff', f_color='#000'), EX_RESULT),
@@ -40,6 +40,15 @@ def test_format_cell(sheet_fixture, params, ex_result):
     sheet_format = sheet_fixture.format()
     sheet_format.format_cell(**params)
     assert Checker(ex_result).validate(sheet_format.requests)
+    assert sheet_format.apply()
+    assert not sheet_format.requests
+
+
+@pytest.mark.parametrize('cell', ['A1:A12', 'A12:H12'])
+def test_merge_cell(sheet_fixture, cell):
+    sheet_format = sheet_fixture.format()
+    sheet_format.merge(cell)
+    assert Checker(EX_MERGE_RESULT).validate(sheet_format.requests)
     assert sheet_format.apply()
     assert not sheet_format.requests
 

@@ -1,8 +1,11 @@
 
 import pytest
+from json_checker import Checker
 
 from gsheet.helpers import get_color, get_range, RowLetterRange
 from gsheet.exceptions import WrongRange
+
+from tests.checker_params import COLOR, RANGE
 
 
 COLORS = [
@@ -58,12 +61,12 @@ NAME_TITLE = [
 
 @pytest.mark.parametrize('color, ex', COLORS)
 def test_get_color(color, ex):
-    assert get_color(color) == ex
+    assert Checker(COLOR).validate(get_color(color)) == ex
 
 
 @pytest.mark.parametrize('params, ex', RANGES)
 def test_get_range(params, ex):
-    assert get_range(*params) == ex
+    assert Checker(RANGE).validate(get_range(*params)) == ex
 
 
 @pytest.mark.parametrize('params', [('A1', 0), ('', 99)])
