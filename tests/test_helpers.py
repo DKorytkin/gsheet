@@ -2,6 +2,7 @@
 import pytest
 
 from gsheet.helpers import get_color, get_range, RowLetterRange
+from gsheet.exceptions import WrongRange
 
 
 COLORS = [
@@ -63,6 +64,12 @@ def test_get_color(color, ex):
 @pytest.mark.parametrize('params, ex', RANGES)
 def test_get_range(params, ex):
     assert get_range(*params) == ex
+
+
+@pytest.mark.parametrize('params', [('A1', 0), ('', 99)])
+def test_negative_get_range(params):
+    with pytest.raises(WrongRange):
+        get_range(*params)
 
 
 @pytest.mark.parametrize('params, ex', LAST_TITLE)
