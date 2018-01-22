@@ -1,20 +1,21 @@
 
-import os
-
 import httplib2
 from apiclient import discovery
 from oauth2client.service_account import ServiceAccountCredentials
 
-from config import BASE_DIR
+
+SERVICES = [
+    'https://www.googleapis.com/auth/spreadsheets',
+    'https://www.googleapis.com/auth/drive'
+]
 
 
 class GoogleAuth(object):
 
-    def __init__(self, config):
-        self.config = config.get('google')
+    def __init__(self, file_path):
         self._credentials = ServiceAccountCredentials.from_json_keyfile_name(
-            filename=os.path.join(BASE_DIR, self.config.get('secret_file')),
-            scopes=self.config.get('services')
+            filename=file_path,
+            scopes=SERVICES
         )
         self._http_auth = self._credentials.authorize(httplib2.Http())
 

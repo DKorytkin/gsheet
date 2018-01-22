@@ -1,7 +1,6 @@
 
 import logging
 
-from config import parse_config
 from bl.app_auth import GoogleAuth
 from bl.drive import Drive
 from bl.sheet.format import SheetFormat
@@ -11,6 +10,15 @@ from gsheet_exceptions import NotExistSpreadsheet, RequiredSheet
 
 
 log = logging.getLogger(__name__)
+
+
+DOC_TEMPLATE = {
+    'properties': {
+        'title': 'Example title',
+        'locale': 'ru_RU'
+    },
+    'sheets': []
+}
 
 
 def create_sheet(title):
@@ -24,14 +32,13 @@ def create_sheet(title):
     return sheet_template
 
 
-def get_sheet_body(doc_title, sheet_title, template):
+def get_sheet_body(doc_title, sheet_title):
     """
     :param str doc_title:
     :param str sheet_title:
-    :param dict template:
     :return: dict
     """
-    doc = template.copy()
+    doc = DOC_TEMPLATE.copy()
     doc['properties']['title'] = doc_title
     doc['sheets'].append(create_sheet(sheet_title))
     return doc
@@ -39,9 +46,25 @@ def get_sheet_body(doc_title, sheet_title, template):
 
 class Sheet(object):
 
-    def __init__(self, config=None):
-        self.config = config or parse_config()
-        auth = GoogleAuth(self.config)
+    def __init__(self, secret_file_path):
+        """
+        example: {
+            "type": "service_account",
+            "project_id": "blahblah",
+            "private_key_id": "",
+            "private_key": "",
+            "client_email": "",
+            "client_id": "666",
+            "auth_uri": ".../oauth2/auth",
+            "token_uri": ".../oauth2/token",
+            "auth_provider_x509_cert_url": "...certs",
+            "client_x509_cert_url": "...."
+        }
+
+        :param secret_file_path:
+        """
+        self.secret = secret_file_path
+        auth = GoogleAuth(self.secret)
         self.drive = Drive(auth.drive())
         self.spreadsheet_service = auth.sheet().spreadsheets()
         self.spreadsheet = None
@@ -49,13 +72,8 @@ class Sheet(object):
         self.sheet_title = None
 
     def create(self, doc_title, sheet_title):
-        sheet_body = get_sheet_body(
-            doc_title=doc_title,
-            sheet_title=sheet_title,
-            template=self.config.get('google').get('doc_template')
-        )
         self.spreadsheet = self.spreadsheet_service.create(
-            body=sheet_body
+            body=get_sheet_body(doc_title, sheet_title)
         ).execute()
         if not self.spreadsheet.get('spreadsheetId'):
             raise NotExistSpreadsheet('Something wrong not created')
