@@ -1,7 +1,7 @@
 
 import logging
 
-from helpers import get_range
+from gsheet.helpers import get_range
 
 
 log = logging.getLogger(__name__)

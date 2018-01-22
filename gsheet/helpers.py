@@ -4,7 +4,7 @@ from string import ascii_uppercase
 
 from colour import Color
 
-from gsheet_exceptions import WrongRange
+from gsheet.exceptions import WrongRange
 
 
 log = logging.getLogger(__name__)

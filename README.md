@@ -1,4 +1,4 @@
-# Gsheet [![Build Status](https://travis-ci.org/DKorytkin/gsheet.svg?branch=master)](https://travis-ci.org/DKorytkin/gsheet) [![cov](https://codecov.io/gh/DKorytkin/gsheet/branch/master/graph/badge.svg)](https://travis-ci.org/DKorytkin/gsheet)
+# Gsheet [![Build Status](https://travis-ci.org/DKorytkin/gsheet.svg?branch=master)](https://travis-ci.org/DKorytkin/gsheet) [![cov](https://codecov.io/gh/DKorytkin/gsheet/branch/master/graph/badge.svg)](https://codecov.io/gh/DKorytkin/gsheet)
 
 Simple library writing data to google sheets
 

@@ -1,7 +1,7 @@
 
 import logging
 
-from helpers import get_color, get_range
+from gsheet.helpers import get_color, get_range
 
 
 log = logging.getLogger(__name__)

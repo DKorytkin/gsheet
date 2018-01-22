@@ -1,7 +1,7 @@
 
 import logging
 
-from helpers import RowLetterRange
+from gsheet.helpers import RowLetterRange
 
 
 log = logging.getLogger(__name__)

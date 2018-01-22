@@ -1,9 +1,7 @@
 
-from random import random
-
 import pytest
 
-from helpers import get_color, get_range, RowLetterRange
+from gsheet.helpers import get_color, get_range, RowLetterRange
 
 
 COLORS = [

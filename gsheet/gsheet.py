@@ -1,12 +1,12 @@
 
 import logging
 
-from bl.app_auth import GoogleAuth
-from bl.drive import Drive
-from bl.sheet.format import SheetFormat
-from bl.sheet.value import SheetValue
-from bl.sheet.chart import SheetCharts
-from gsheet_exceptions import NotExistSpreadsheet, RequiredSheet
+from gsheet.app_auth import GoogleAuth
+from gsheet.drive import Drive
+from gsheet.actions.format import SheetFormat
+from gsheet.actions.value import SheetValue
+from gsheet.actions.chart import SheetCharts
+from gsheet.exceptions import NotExistSpreadsheet, RequiredSheet
 
 
 log = logging.getLogger(__name__)
