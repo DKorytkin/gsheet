@@ -1,15 +1,27 @@
 
 import pytest
+from json_checker import Checker, And
 
 from gsheet import Sheet
 from gsheet.exceptions import NotExistSpreadsheet
 
-from tests.fixtures import SECRET_FILE_PATH
+from tests.fixtures import SECRET_FILE_PATH, SHEET_TITLE
 
+
+EX_RESULT = {
+    'value_input_option': 'USER_ENTERED',
+    'data': [
+        {
+            'range': And(str, lambda x: SHEET_TITLE in x),
+            'majorDimension': 'ROWS',
+            'values': [[str]]
+        }
+    ]
+}
 
 ROW_DATA = [
-    ([1, ['title1', 'title2', 'title3']], {'value_input_option': 'USER_ENTERED', 'data': [{'range': 'Sheet from test!A1:C1', 'majorDimension': 'ROWS', 'values': [['title1', 'title2', 'title3']]}]}),
-    ([12, ['1']], {'value_input_option': 'USER_ENTERED', 'data': [{'range': 'Sheet from test!A12:A12', 'majorDimension': 'ROWS', 'values': [['1']]}]})
+    ([1, ['title1', 'title2', 'title3']], EX_RESULT),
+    ([12, ['1']], EX_RESULT)
 ]
 ROW_RANGE = [
     ([12, ['key1', 'key2']], 'A12:B12'),
@@ -21,7 +33,7 @@ ROW_RANGE = [
 def test_add_row(sheet_fixture, row_param, ex_result):
     sheet_value = sheet_fixture.value()
     sheet_value.add_row(*row_param)
-    assert sheet_value.sheet_body == ex_result
+    assert Checker(ex_result).validate(sheet_value.sheet_body )
     assert sheet_value.apply()
 
 
