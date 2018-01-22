@@ -17,6 +17,7 @@ setup(
         'bl.sheet.chart', 'bl.sheet.format', 'bl.sheet.value',
     ],
     python_requires='>=3.6',
+    install_requires=['trafaret==1.0.0'],
     long_description=codecs.open('README.md', 'r', 'utf-8').read(),
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
