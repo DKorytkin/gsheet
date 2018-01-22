@@ -7,7 +7,7 @@ from bl.drive import Drive
 from bl.sheet.format import SheetFormat
 from bl.sheet.value import SheetValue
 from bl.sheet.chart import SheetCharts
-from sheet_exception import NotExistSpreadsheet, RequiredSheet
+from gsheet_exceptions import NotExistSpreadsheet, RequiredSheet
 
 
 log = logging.getLogger(__name__)

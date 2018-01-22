@@ -13,7 +13,7 @@ setup(
     url='https://github.com/DKorytkin/gsheet',
     packages=find_packages(),
     py_modules=[
-        'gsheet', 'sheet_exception', 'config', 'helpers',
+        'gsheet', 'sheet_exceptions', 'config', 'helpers',
         'bl.app_auth', 'bl.drive',
         'bl.sheet.chart', 'bl.sheet.format', 'bl.sheet.value',
     ],
