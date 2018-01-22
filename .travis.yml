@@ -6,11 +6,12 @@ python:
  - "3.6"
 
 install:
+  - pip install -r requirements.txt
   - pip install pytest-cov
   - pip install wheel codecov coverage
 
 script:
- - py.test --cov-report xml --cov=json_checker
+ - py.test --cov-report xml --cov=gsheet
 
 after_success:
  - codecov -t "$CODECOV_TOKEN"
