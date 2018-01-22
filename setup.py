@@ -12,7 +12,7 @@ setup(
     keywords='google sheet',
     url='https://github.com/DKorytkin/gsheet',
     py_modules=[
-        'gsheet', 'gsheet_exceptions.py', 'config', 'helpers',
+        'gsheet', 'gsheet_exceptions', 'config', 'helpers',
         'bl.app_auth', 'bl.drive',
         'bl.sheet.chart', 'bl.sheet.format', 'bl.sheet.value',
     ],
