@@ -11,3 +11,4 @@ colour==0.1.5
 
 # test
 pytest==3.3.2
+json_checker==1.1.6
