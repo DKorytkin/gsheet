@@ -15,7 +15,7 @@ pip install git+https://github.com/DKorytkin/gsheet.git
 ```
 - go to [google dev console](https://console.developers.google.com/apis/)
 - create user profile
-- generate secret_file.json
+- generate `secret_file.json`
 
 ## How to use?
 Simple tutorial and examples:
