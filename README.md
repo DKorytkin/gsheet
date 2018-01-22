@@ -1,15 +1,11 @@
-# Gsheet [![Build Status](https://travis-ci.org/DKorytkin/gsheet.svg?branch=master)](https://travis-ci.org/DKorytkin/gsheet) [![cov](https://codecov.io/gh/DKorytkin/gsheet/branch/master/graph/badge.svg)](https://codecov.io/gh/DKorytkin/gsheet)
+# GSheet [![Build Status](https://travis-ci.org/DKorytkin/gsheet.svg?branch=master)](https://travis-ci.org/DKorytkin/gsheet) [![cov](https://codecov.io/gh/DKorytkin/gsheet/branch/master/graph/badge.svg)](https://codecov.io/gh/DKorytkin/gsheet)
 
 Simple library writing data to google sheets
 
 
 ## Quick start 
 
-- clone repository
-```bash
-git clone git@github.com:DKorytkin/gsheet.git
-```
-- or install 
+- Install GSheet
 ```bash
 pip install git+https://github.com/DKorytkin/gsheet.git
 ```
