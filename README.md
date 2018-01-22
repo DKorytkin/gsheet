@@ -24,9 +24,16 @@ Simple tutorial and examples:
 
 ### Create first document
 ```python
+import os
+
 from gsheet import Sheet
 
-sheet = Sheet()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SECRET_FILE_PATH = os.path.join(BASE_DIR, 'secret_key.json')
+
+
+sheet = Sheet(SECRET_FILE_PATH)
 sheet.create('My first document', 'My first sheet name')
 
 ```
@@ -37,7 +44,7 @@ Shared this document only read by default
 ```python
 from gsheet import Sheet
 
-sheet = Sheet()
+sheet = Sheet(SECRET_FILE_PATH)
 sheet.get_spreadsheet('jhf99788dfshdkfhsdhfdgjhsdg')
 ```
 
@@ -45,7 +52,7 @@ sheet.get_spreadsheet('jhf99788dfshdkfhsdhfdgjhsdg')
 ```python
 from gsheet import Sheet
 
-sheet = Sheet()
+sheet = Sheet(SECRET_FILE_PATH)
 sheet.get_sheet('My first sheet name')
 ```
 
@@ -53,7 +60,7 @@ sheet.get_sheet('My first sheet name')
 ```python
 from gsheet import Sheet
 
-sheet = Sheet()
+sheet = Sheet(SECRET_FILE_PATH)
 sheet.get_spreadsheet('jhf99788dfshdkfhsdhfdgjhsdg')
 sheet.get_url()
 ```
@@ -62,7 +69,7 @@ sheet.get_url()
 ```python
 from gsheet import Sheet
 
-sheet = Sheet()
+sheet = Sheet(SECRET_FILE_PATH)
 sheet.get_spreadsheet('jhf99788dfshdkfhsdhfdgjhsdg')
 v = sheet.value()
 
@@ -78,7 +85,7 @@ v.apply()
 ```python
 from gsheet import Sheet
 
-sheet = Sheet()
+sheet = Sheet(SECRET_FILE_PATH)
 sheet.get_spreadsheet('jhf99788dfshdkfhsdhfdgjhsdg')
 f = sheet.format()
 
@@ -108,7 +115,7 @@ f.apply()
 ```python
 from gsheet import Sheet
 
-sheet = Sheet()
+sheet = Sheet(SECRET_FILE_PATH)
 sheet.get_spreadsheet('jhf99788dfshdkfhsdhfdgjhsdg')
 f = sheet.format()
 
