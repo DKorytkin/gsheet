@@ -15,6 +15,8 @@ pip install git+https://github.com/DKorytkin/gsheet.git
 ```
 - go to [google dev console](https://console.developers.google.com/apis/)
 - create user profile
+- add Google Drive API
+- add Google Sheets API
 - generate `secret_file.json`
 
 ## How to use?
