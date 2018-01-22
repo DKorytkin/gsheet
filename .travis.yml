@@ -11,6 +11,7 @@ install:
   - pip install wheel codecov coverage
 
 script:
+ - $GOOGLE_KEYS > secret_key.json
  - py.test --cov-report xml --cov=gsheet
 
 after_success:
