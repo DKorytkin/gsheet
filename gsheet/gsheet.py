@@ -101,7 +101,7 @@ class Sheet(object):
         :param kwargs:
         :return:
         """
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         default_role = {'type': 'anyone', 'role': 'reader'}
         shared = self.drive.drive.permissions().create(
@@ -112,7 +112,7 @@ class Sheet(object):
         return shared
 
     def value(self):
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         if not self.sheet_title:
             raise RequiredSheet()
@@ -123,7 +123,7 @@ class Sheet(object):
         )
 
     def format(self):
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         if not self.sheet_title:
             raise RequiredSheet()
@@ -134,12 +134,12 @@ class Sheet(object):
         )
 
     def chart(self):
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         return SheetCharts(self.spreadsheet_service, self.spreadsheet)
 
     def add_sheet(self, title):
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         r = {'addSheet': {'properties': {'title': title}}}
         result = self.spreadsheet_service.batchUpdate(
@@ -154,7 +154,7 @@ class Sheet(object):
         return result
 
     def get_sheet(self, title):
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         for s in self.spreadsheet['sheets']:
             properties = s['properties']
@@ -165,12 +165,12 @@ class Sheet(object):
                 return self.sheet_id
 
     def get_url(self):
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         return self.spreadsheet.get('spreadsheetUrl')
 
     def delete_sheet(self, sheet_id):
-        if not self.spreadsheet.get('spreadsheetId'):
+        if not self.spreadsheet:
             raise NotExistSpreadsheet()
         result = self.spreadsheet_service.batchUpdate(
             spreadsheetId=self.spreadsheet['spreadsheetId'],

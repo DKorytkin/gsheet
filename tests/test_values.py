@@ -4,7 +4,7 @@ import pytest
 from gsheet import Sheet
 from gsheet.exceptions import NotExistSpreadsheet
 
-from .fixtures import SECRET_FILE_PATH
+from tests.fixtures import SECRET_FILE_PATH
 
 
 ROW_DATA = [
@@ -45,5 +45,5 @@ def test_negative_add_value_without_spreadsheet():
 
 
 def test_negative_add_value_without_sheet():
-    # TODO 
+    # TODO
     pass
