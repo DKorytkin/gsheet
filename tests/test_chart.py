@@ -40,7 +40,11 @@ EX_ADD = [
         'chart': {
             'spec': {'title': str, 'basicChart': EX_BASE_CHAR},
             'position': {'newSheet': True}
-}}}]
+        }
+    }}
+]
+EX_DELETE = [{'deleteEmbeddedObject': {'objectId': int}}]
+EX_APPLY = []
 
 
 @pytest.mark.parametrize('params, ex_result', AXIS_DATA)
@@ -79,11 +83,18 @@ def test_get_basic_chart(sheet_fixture, params):
 def test_add(sheet_fixture, params):
     sheet_chart = sheet_fixture.chart()
     assert Checker(EX_ADD).validate(sheet_chart.add(*params))
+    assert sheet_chart.requests
 
 
-def test_delete_char():
-    pass
+@pytest.mark.parametrize('ids', [[1], list(range(100))])
+def test_delete_char(sheet_fixture, ids):
+    sheet_chart = sheet_fixture.chart()
+    sheet_chart.delete(ids)
+    assert Checker(EX_DELETE).validate(sheet_chart.requests)
 
 
-def test_apply_char():
-    pass
+@pytest.mark.skip('Must be develop')
+def test_apply_char(sheet_fixture):
+    sheet_chart = sheet_fixture.chart()
+    assert Checker(EX_APPLY).validate(sheet_chart.apply())
+    assert not sheet_chart.requests
