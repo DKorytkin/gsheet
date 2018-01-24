@@ -1,5 +1,6 @@
 
 import logging
+from random import randint
 
 from gsheet.app_auth import GoogleAuth
 from gsheet.drive import Drive
@@ -25,8 +26,8 @@ def create_sheet(title):
     sheet_template = {
         'properties': {
             'sheetType': 'GRID',
-            'sheetId': 0,
-            'title': title,
+            'sheetId': randint(1, 999999),
+            'title': str(title),
         }
     }
     return sheet_template
@@ -39,7 +40,7 @@ def get_sheet_body(doc_title, sheet_title):
     :return: dict
     """
     doc = DOC_TEMPLATE.copy()
-    doc['properties']['title'] = doc_title
+    doc['properties']['title'] = str(doc_title)
     doc['sheets'].append(create_sheet(sheet_title))
     return doc
 

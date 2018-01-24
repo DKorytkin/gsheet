@@ -1,4 +1,6 @@
 
+from json_checker import Or
+
 RANGE = {
     'startColumnIndex': int,
     'endColumnIndex': int,
@@ -7,7 +9,7 @@ RANGE = {
     'sheetId': int
 }
 COLOR = {
-    'red': float,
-    'blue': float,
-    'green': float
+    'red': Or(float, int),
+    'blue': Or(float, int),
+    'green': Or(float, int),
 }
