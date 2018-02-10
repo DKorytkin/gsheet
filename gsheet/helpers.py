@@ -58,17 +58,35 @@ class RowLetterRange(object):
 
     def __init__(self, title):
         """
-        :param title: example ['id', 'key', 'value']
+        :param list title: example ['id', 'key', 'value']
         """
         self.title = title
 
-    def get_title_column(self, title):
-        number = self.title.index(title)
-        return ascii_uppercase[number]
-
-    def get_last_title_column(self):
-        return ascii_uppercase[len(self.title) - 1]
+    @staticmethod
+    def _index_to_letter(number):
+        """
+        For example:
+            1 > "A"
+            12 > "L"
+            123 > "DS"
+            1234 > "AUL"
+        :param int number:
+        :return: str title:
+        """
+        title = ''
+        while number:
+            mod = (number - 1) % len(ascii_uppercase)
+            number = int((number - mod) / len(ascii_uppercase))
+            title += ascii_uppercase[mod]
+        return title[::-1]
 
     @staticmethod
     def get_first_title_column():
         return ascii_uppercase[0]
+
+    def get_title_column(self, title):
+        number = self.title.index(title) + 1
+        return self._index_to_letter(number)
+
+    def get_last_title_column(self):
+        return self._index_to_letter(len(self.title))
