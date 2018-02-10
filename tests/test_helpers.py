@@ -49,7 +49,11 @@ LAST_TITLE = [
     (['1', '2', '3'], 'C'),
     (['1', ], 'A'),
     (['ids', 'keys', 'values', 'else data'], 'D'),
-    (list(range(1, 20)), 'S')
+    (list(range(1, 20)), 'S'),
+    (list(range(1, 26)), 'Y'),
+    (list(range(1, 27)), 'Z'),
+    (list(range(27)), 'AA'),
+    (list(range(1, 222)), 'HM')
 ]
 NAME_TITLE = [
     (['1', '2', '3'], '2', 'B'),
@@ -81,7 +85,7 @@ def test_get_last_title_column(params, ex):
     assert r.get_last_title_column() == ex
 
 
-@pytest.mark.parametrize('params', [['1', '2'], ['g', 'S', 's'], [1, 23, 4]])
+@pytest.mark.parametrize('params', [['1', '2'], ['g', ], [1, 23, 4], list(range(99))])
 def test_get_first_title_column(params):
     r = RowLetterRange(params)
     assert r.get_first_title_column() == 'A'
